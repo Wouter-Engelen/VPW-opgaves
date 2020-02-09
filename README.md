@@ -1,4 +1,6 @@
-# How Does The Contest Work?
+# Vlaamse Programmeerwedstrijd
+
+## How Does The Contest Work?
 
 There are 4 categories:
 
@@ -20,19 +22,19 @@ The rules are:
 * If your solver can solve `p`% of the cases correctly, you get `p` points. If it solves 100%, you get 150 points.
 * The server imposes a time limit on your code. This time limit seems to change from year to year and fluctuates around 30 seconds. Cat-1 and cat-2 problems are generally not difficult to solve within the time limit: the focus lies on the correctness of the results. For cat-3 and cat-4 problems it is often necessary to find an efficient solution. Inputs can become quite large so as to check that your algorithms have have a certain time complexity.
 
-# Repo Usage
+## Repo Usage
 
 Simply clone the repository: `git clone https://github.com/UCLeuvenLimburg/VPW-opgaves`
 
 If you wish to upload your own solutions, you'll need to ask for write access.
 
-# General Advice
+## General Advice
 
 * Writing text to a file/console is relatively slow and it is more efficient to output large blocks of text instead of single characters one at a time. For this reason, it often happens that your output gets stored in a temporary buffer (*caching*), which will get "flushed" only when enough data has been accumulated. This can be a problem at the contest: the server imposes a time limit, and after N seconds it kills the process running your code. This means your program does not get the chance to flush its output. If you are in a situation where the server tells you your program timed out and did not output anything, the caching is the most likely culprit. To remedy this, you need to *flush* your output.
 * It might be advisable that you use a programming language that all three members know.
 * Develop some small libraries, e.g., functions specialized in reading data from STDIN.
 
-# Language Specific Tips
+## Language Specific Tips
 
-* [Java](java)
-* [Python](python)
+* [Java](docs/java.md)
+* [Python](docs/python.md)
