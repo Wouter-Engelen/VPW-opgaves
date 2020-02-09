@@ -1,6 +1,3 @@
-*
-!.gitignore
-!**/
-!*.pdf
-!*.invoer
-!*.uitvoer
+*.exe
+*.class
+__pycache__/
