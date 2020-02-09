@@ -22,7 +22,7 @@ The rules are:
 
 # Repo Usage
 
-Simply clone the repository: `git clone https://bitbucket.org/fvogels/ucll-vpw`
+Simply clone the repository: `git clone https://github.com/UCLeuvenLimburg/VPW-opgaves`
 
 If you wish to upload your own solutions, you'll need to ask for write access.
 
