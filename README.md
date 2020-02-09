@@ -1,6 +1,6 @@
 # Vlaamse Programmeerwedstrijd
 
-## How Does The Contest Work?
+## How Does The Contest Work
 
 There are 4 categories:
 
