@@ -62,7 +62,7 @@ for nr in range(1, int(input()) + 1):
     def possible(max_dist):
         ranges = [Struct(min = 0, max = 0) for _ in range(n)]
         
-        # 2-pointer technique
+        # 2-pointer technique: for every house y find the largest interval f_y = [x, y] so that abs(huis[x].xpy - huis[y].xpy) <= max_dist
         left, right = 0, 0
         while left < n:
             while right < n and abs(xpy[left].xpy - xpy[right].xpy) <= max_dist:
@@ -74,14 +74,15 @@ for nr in range(1, int(input()) + 1):
         
         frequencies = [Struct(max = 0, lazy = 0) for _ in range(segment_tree_size)]
 
-        # 2-pointer technique
+        # 2-pointer technique:  for every house y find the largest interval [x, y] so that abs(huis[x].xmy - huis[y].xmy) <= max_dist
+        #                       for every a in [x, y]: for every b in f_y(a): frequencies[a]++
+        #                       if max(frequencies) >= k   <=>   there is a house within k intervals   <=>   there is a interval with k houses   <=>   'max_dist' is possible
         left, right = 0, 0
         while right < n:
             while right < n and abs(xmy[left].xmy - xmy[right].xmy) <= max_dist:
                 range_update(frequencies, ranges[xmy[right].nr], 1)
                 right += 1
             
-            # If there is a house within k ranges = there is a range with k houses = 'max_dist' is possible
             if range_max(frequencies) >= k:
                 return True
             
