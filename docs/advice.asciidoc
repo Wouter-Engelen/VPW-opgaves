@@ -7,4 +7,4 @@
 == Language Specific Tips
 
 * link:docs/java.md[Java]
-* link:docs/python.md[Python]
+* link:docs/python.asciidoc[Python]
