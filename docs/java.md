@@ -20,9 +20,6 @@ public class Main
 }
 ```
 
-
-
-
 ## Reading From STDIN
 
 ```java
@@ -45,6 +42,7 @@ public class Main
 ```
 
 ## Flushing
+
 Use [`System.out.flush()`](https://docs.oracle.com/javase/7/docs/api/java/io/OutputStream.html#flush()) to force output to be written. We advice you to call it each time you solved one of the cases in the input file.
 
 ```java
