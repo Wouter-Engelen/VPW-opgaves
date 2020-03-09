@@ -14,20 +14,30 @@ n = int(input())
 ns = [ int(x) for x in input().split(' ') ]
 ----
 
+== Writing to STDOUT
+
+[source,python]
+----
+# String interpolation
+x = 5
+y = 6
+s = f'#{x} #{y}'   # s == "5 6"
+
+# Joining strings
+" ".join(['a', 'b', 'c'])   # Constructs "a b c"
+----
+
 == Flushing
 
 [source,python]
 ----
 import sys
 
-sys.stdout.flush()
-----
-
-or
-
-[source,python]
-----
+# Flush when printing
 print(whatever, flush=True)
+
+# Flush STDOUT
+sys.stdout.flush()
 ----
 
 == Command Line
