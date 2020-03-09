@@ -1,3 +1,4 @@
 *.exe
 *.class
 __pycache__/
+.vscode/
