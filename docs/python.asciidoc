@@ -1,6 +1,6 @@
 = Python-Specific Advice
 
-== Reading From STDIN
+== Input
 
 [source,python]
 ----
@@ -12,9 +12,12 @@ n = int(input())
 
 # Reading next line as a list of integers
 ns = [ int(x) for x in input().split(' ') ]
+
+# Reading n lines
+lines = [ input() for _ in range(n) ]
 ----
 
-== Writing to STDOUT
+== Output
 
 [source,python]
 ----
