@@ -1,0 +1,55 @@
+= Python-Specific Advice
+
+== Input
+
+[source,python]
+----
+# Reading next line as a string
+line = input()
+
+# Reading next line as an integer
+n = int(input())
+
+# Reading next line as a list of integers
+ns = [ int(x) for x in input().split(' ') ]
+
+# Reading n lines
+lines = [ input() for _ in range(n) ]
+----
+
+== Output
+
+[source,python]
+----
+# String interpolation
+x = 5
+y = 6
+s = f'#{x} #{y}'   # s == "5 6"
+
+# Joining strings
+" ".join(['a', 'b', 'c'])   # Constructs "a b c"
+----
+
+== Flushing
+
+[source,python]
+----
+import sys
+
+# Flush when printing
+print(whatever, flush=True)
+
+# Flush STDOUT
+sys.stdout.flush()
+----
+
+== Command Line
+
+[source,bash]
+----
+# Uitvoer solver laten afprinten
+$ cat voorbeeld.invoer | python solver.py
+
+# Uitvoer solver vergelijken met verwachte uitvoer
+$ cat voorbeeld.invoer | python solver.py | diff -w - voorbeeld.uitvoer
+----

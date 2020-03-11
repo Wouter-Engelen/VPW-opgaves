@@ -2,4 +2,4 @@
 
 * [Usage](docs/usage.md)
 * [How the contest is organized](docs/contest.md)
-* [Advice](docs/advice.md)
+* [Advice](docs/advice.asciidoc)
