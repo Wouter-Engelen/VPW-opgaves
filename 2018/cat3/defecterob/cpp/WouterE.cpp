@@ -1,65 +1,63 @@
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <queue>
-#include <map>
-
+#include <bits/stdc++.h>
 using namespace std;
+#define int long long
 
-string solve(string fout, string correct) {			// Breadth-first search
-	map<string, string> seen;
-	queue<string> todo;
-	seen[fout] = "";
-	todo.push(fout);
-
-	while (todo.front() != correct) {
-		string s = todo.front();
-		todo.pop();
-
-		for (int i = 0; i < s.size(); i++) {
-			if (s.at(i) != correct.at(i))
-			{
-				for (int j = i + 1; j < s.size(); j++) {
-					if (s.at(j) != correct.at(j) && (s.at(i) == correct.at(j) || s.at(j) == correct.at(i)))
-					{
-						string x = s;
-						swap(x.at(i), x.at(j));
-
-						string ops = (seen.at(s) + (char)('A' + i)) + (char)('A' + j);
-
-						if (seen.find(x) == seen.end() || (ops.size() == seen.at(x).size() && ops < seen.at(x))) {
-							seen[x] = ops;
-							todo.push(x);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	return seen.at(correct);
+int minimal_length(string a, string b){
+    int error_count = 0;
+    for(int i = 0; i < a.size(); i++) error_count += a[i] != b[i];
+    return error_count + error_count % 2;
 }
 
-int main() {
-	int nr;
-	cin >> nr;
+string solve(string start, string target){      // Brute force with priority queue and heuristic (A*)
+    using ii = tuple<int, string, string>;
+    auto comp = [](ii l, ii r) {
+        if(get<0>(l) != get<0>(r)) return get<0>(l) > get<0>(r);
+        return get<1>(l) > get<1>(r);
+    };
+    priority_queue<ii, vector<ii>, decltype(comp)> pq(comp);
+    pq.push({minimal_length(start, target), "", start});
 
-	for (int i = 1; i <= nr; i++) {
-		string fout, correct;
-		cin >> fout >> correct;
+    unordered_set<string> seen;
 
-		if (fout == correct) {
-			cout << i << " correct" << endl;
-		}
-		else if (
-			count(fout.begin(), fout.end(), 'S') != count(correct.begin(), correct.end(), 'S') ||
-			count(fout.begin(), fout.end(), 'L') != count(correct.begin(), correct.end(), 'L') ||
-			count(fout.begin(), fout.end(), 'R') != count(correct.begin(), correct.end(), 'R')
-			) {
-			cout << i << " onmogelijk" << endl;
-		}
-		else {
-			cout << i << " " << solve(fout, correct) << endl;
-		}
-	}
+    while(true){
+        int len; string ops, current;
+        tie(len, ops, current) = pq.top();
+        pq.pop();
+
+        if(current == target) return ops;
+        if(!seen.insert(current).second) continue;
+
+        for(int i = 0; i < current.size(); i++){
+            for(int j = i + 1; j < current.size(); j++){
+                string next = current;
+                swap(next[i], next[j]);
+
+                string next_ops = ops;
+                next_ops += 'A' + i;
+                next_ops += 'A' + j;
+                
+                pq.push({next_ops.size() + minimal_length(next, target), next_ops, next});
+            }
+        }
+    }
+}
+
+signed main() {
+    int cases;
+    cin >> cases;
+
+    for(int nr = 1; nr <= cases; nr++){
+        string fout, correct;
+        cin >> fout >> correct;
+
+        if(fout == correct){
+            cout << nr << " correct" << endl;
+        } 
+        else if(multiset<char>(fout.begin(), fout.end()) != multiset<char>(correct.begin(), correct.end())) {
+            cout << nr << " onmogelijk" << endl;
+        }
+        else {
+            cout << nr << " " << solve(fout, correct) << endl;
+        }
+    }
 }
